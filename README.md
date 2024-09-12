@@ -3,7 +3,7 @@ My personal website showcases my experiences and portfolio as a Full-Stack Softw
 
 ## Preview
 <div align="center">
-    <a href="https://www.gabrielsotodev.com/">
+    <a href="https://www.gabrielsotodev.com/" target="_blank">
         <img src="./images/GabrielSotoDev Website.png" align="center" width="1000px" alt="Gabriel's Portfolio Site Preview">
     </a>
 </div>
