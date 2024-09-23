@@ -3016,7 +3016,6 @@ figure {
 .form-wrapper.text-area {
   border-radius: 2.5rem;
   max-width: 530px;
-  min-width: 500px;
   max-height: 500px;
 }
 #Text-Message {
