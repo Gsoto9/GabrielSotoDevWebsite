@@ -65,45 +65,69 @@
                 </div>
                 <div id="w-node-afa96399-1d83-0a9a-a23c-3a0edb3740a6-ee9638df" class="content-block">
                   <div class="contact-form-block w-form">
-                    <form id="contact-form" method="POST" action="https://api.web3forms.com/submit">
-                      <input type="hidden" name="access_key" value="2238c83a-2b45-49e7-8f0b-58d66eaa4ee4">
-
-                      <div class="form-field-wrapper">
-                        <div class="form-wrapper"><input class="form-input w-input" maxlength="256" name="Name" data-name="Name" placeholder="Full Name" type="text" id="Name" required=""></div>
-                      </div>
-                      <div class="form-field-wrapper">
-                        <div class="form-wrapper"><input class="form-input w-input" maxlength="256" name="Email" data-name="Email" placeholder="Email address" type="email" id="Email" required=""></div>
-                      </div>
-                      <div class="form-field-wrapper">
-                        <div class="form-wrapper"><input class="form-input w-input" maxlength="256" name="Phone" data-name="Phone" placeholder="Phone number" type="tel" id="Phone" required=""></div>
-                      </div>
-                      <div class="form-field-wrapper">
-                        <div class="form-wrapper text-area"><textarea id="Text-Message" name="Text-Message" maxlength="5000" data-name="Text Message" placeholder="Message..." class="form-input is-text-area w-input"></textarea></div>
-                      </div>
-                      <div id="w-node-_13ca62eb-533c-42ef-40ee-861b65bee54e-ee9638df" class="form-button-wrapper"><input type="submit" data-wait="Please wait..." class="button w-button" value="Send"></div>
-                    </form>
-                    <div class="form-message-success w-form-done">
-                      <div>Thank you! Your submission has been received!</div>
+                  <form id="contact-form" method="POST" action="https://api.web3forms.com/submit">
+                    <input type="hidden" name="access_key" value="2238c83a-2b45-49e7-8f0b-58d66eaa4ee4">
+                
+                    <div class="form-field-wrapper">
+                    <div class="form-wrapper"><input class="form-input w-input" maxlength="256" name="Name" data-name="Name" placeholder="Full Name" type="text" id="Name" required=""></div>
                     </div>
-                    <div class="form-message-error w-form-fail">
-                      <div>Oops! Something went wrong while submitting the form.</div>
+                    <div class="form-field-wrapper">
+                    <div class="form-wrapper"><input class="form-input w-input" maxlength="256" name="Email" data-name="Email" placeholder="Email address" type="email" id="Email" required=""></div>
                     </div>
+                    <div class="form-field-wrapper">
+                    <div class="form-wrapper"><input class="form-input w-input" maxlength="256" name="Phone" data-name="Phone" placeholder="Phone number" type="tel" id="Phone" required=""></div>
+                    </div>
+                    <div class="form-field-wrapper">
+                    <div class="form-wrapper text-area"><textarea id="Text-Message" name="Text-Message" maxlength="5000" data-name="Text Message" placeholder="Message..." class="form-input is-text-area w-input"></textarea></div>
+                    </div>
+                    <div class="h-captcha" data-captcha="true"></div>
+                    <div id="w-node-_13ca62eb-533c-42ef-40ee-861b65bee54e-ee9638df" class="form-button-wrapper">
+                    <input type="submit" data-wait="Please wait..." class="button w-button" value="Send">
+                    </div>
+                    <input type="hidden" name="redirect" value="https://web3forms.com/success.html">
+                  </form>
+                  <div class="form-message-success w-form-done">
+                    <div>Thank you! Your submission has been received!</div>
+                  </div>
+                  <div class="form-message-error w-form-fail">
+                    <div>Oops! Something went wrong while submitting the form.</div>
+                  </div>
                   </div>
                 </div>
+                
+                
+                <script src="https://web3forms.com/client/script.js" async defer></script>
                 <script>
-                  document.getElementById("contact-form").addEventListener("submit", function() {
-                    // Form will submit normally and redirect to the Web3Forms success page.
-                    // We wait for a moment before resetting the form so that the success page has time to load.
+                  document.getElementById("contact-form").addEventListener("submit", function (event) {
+                  const hcaptchaResponse = document.querySelector('[name="h-captcha-response"]').value;
+                
+                  // Prevent form submission if hCaptcha is not validated
+                  if (!hcaptchaResponse) {
+                    event.preventDefault(); // Stop the form from being submitted
+                    alert("Please complete the hCaptcha before submitting the form.");
+                    return false;
+                  }
+                
+                  // Form will submit normally if hCaptcha is validated
+                  setTimeout(() => {
+                    this.reset();
+                  }, 100); // Adjust this delay if necessary
+                  });
+                
+                  // Redirect to contact.html after a delay
+                  window.addEventListener("load", function () {
+                  if (window.location.href.includes("web3forms.com/success.html")) {
                     setTimeout(() => {
-                      this.reset();
-                    }, 100); // Adjust this delay if necessary
+                    window.location.href = "https://gabrielsotodev.com/contact.html";
+                    }, 3000); // Adjust the delay as needed
+                  }
                   });
                 
                   // Prevent the browser from caching form data when the page is loaded
-                  window.onpageshow = function(event) {
-                    if (event.persisted) {
-                      document.getElementById("contact-form").reset();
-                    }
+                  window.onpageshow = function (event) {
+                  if (event.persisted) {
+                    document.getElementById("contact-form").reset();
+                  }
                   };
                 </script>
               </div>
